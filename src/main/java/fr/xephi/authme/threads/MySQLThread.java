@@ -269,19 +269,21 @@ public class MySQLThread extends Thread implements DataSource {
         try {
             con = makeSureConnectionIsReady();
             if ((columnSalt == null || columnSalt.isEmpty()) || (auth.getSalt() == null || auth.getSalt().isEmpty())) {
-                pst = con.prepareStatement("INSERT INTO " + tableName + "(" + columnName + "," + columnPassword + "," + columnIp + "," + columnLastLogin + ") VALUES (?,?,?,?);");
+                pst = con.prepareStatement("INSERT INTO " + tableName + "(" + columnName + ", 'username_clean'," +  columnPassword + "," + columnIp + "," + columnLastLogin + ") VALUES (?,?,?,?,?);");
                 pst.setString(1, auth.getNickname());
-                pst.setString(2, auth.getHash());
-                pst.setString(3, auth.getIp());
-                pst.setLong(4, auth.getLastLogin());
+                pst.setString(2, auth.getNickname());
+                pst.setString(3, auth.getHash());
+                pst.setString(4, auth.getIp());
+                pst.setLong(5, auth.getLastLogin());
                 pst.executeUpdate();
             } else {
-                pst = con.prepareStatement("INSERT INTO " + tableName + "(" + columnName + "," + columnPassword + "," + columnIp + "," + columnLastLogin + "," + columnSalt + ") VALUES (?,?,?,?,?);");
+                pst = con.prepareStatement("INSERT INTO " + tableName + "(" + columnName + ", 'username_clean'," + columnPassword + "," + columnIp + "," + columnLastLogin + "," + columnSalt + ") VALUES (?,?,?,?,?,?);");
                 pst.setString(1, auth.getNickname());
-                pst.setString(2, auth.getHash());
-                pst.setString(3, auth.getIp());
-                pst.setLong(4, auth.getLastLogin());
-                pst.setString(5, auth.getSalt());
+                pst.setString(2, auth.getNickname());
+                pst.setString(3, auth.getHash());
+                pst.setString(4, auth.getIp());
+                pst.setLong(5, auth.getLastLogin());
+                pst.setString(6, auth.getSalt());
                 pst.executeUpdate();
             }
             if (!columnOthers.isEmpty()) {

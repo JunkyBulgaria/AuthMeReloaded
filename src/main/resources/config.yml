@@ -1,40 +1,50 @@
 DataSource:
+    # ----------- DB CONNECTION ----------- #
+    # Can be set to : file, sqlite, mysql
+    backend: mysql
+    # Host
+    mySQLHost: 127.0.0.1
+    # Port
+    mySQLPort: '3306'
+    # Username about Database Connection Infos
+    mySQLUsername: root
+    # Password
+    mySQLPassword: 'pass'
+    # Database
+    mySQLDatabase: phpbb
+    # Users Table  (do not modify)
+    mySQLTablename: phpbb_users
+    # phpBB prefix defined during phpbb installation process
+    phpbbTablePrefix: 'phpbb_'
+    # phpBB activated group id , 2 is default registered group defined by phpbb
+    #   Default: 2
+    phpbbActivatedGroupId: 2
+    
+    
+    # ----------- TABLE SETTINGS ----------- #
+    # ----------- Do not edit unless you got custom stuff ----------- #
     # Column for storing or checking players nickname
     mySQLColumnName: username
-    # Table of the database
-    mySQLTablename: authme
-    # Username about Database Connection Infos
-    mySQLUsername: authme
-    # Can be set to : file, sqlite, mysql
-    backend: file
     # Column for storing players lastlogins
-    mySQLColumnLastLogin: lastlogin
-    # Database Name, use with converters or as SQLITE database name
-    mySQLDatabase: authme
-    # Database Port
-    mySQLPort: '3306'
+    mySQLColumnLastLogin: user_lastlogin
     # Column for storing players IPs
-    mySQLColumnIp: ip
-    # Database location
-    mySQLHost: 127.0.0.1
+    mySQLColumnIp: user_ip
     # Column for storing players passwords
-    mySQLColumnPassword: password
-    # Password about Database Connection Infos
-    mySQLPassword: '12345'
+    mySQLColumnPassword: user_password
     # Do we need to cache all query?
     caching: true
     # Column for SaveQuitLocation - X
-    mySQLlastlocX: x
+    mySQLlastlocX: user_x
     # Column for SaveQuitLocation - Y
-    mySQLlastlocY: y
+    mySQLlastlocY: user_y
     # Column for SaveQuitLocation - Z
-    mySQLlastlocZ: z
+    mySQLlastlocZ: user_z
     # Column for SaveQuitLocation - World name
-    mySQLlastlocWorld: world
+    mySQLlastlocWorld: user_world
     # Column for storing players emails
-    mySQLColumnEmail: email
+    mySQLColumnEmail: user_email
     # Column of IDs to sort data
-    mySQLColumnId: id
+    mySQLColumnId: user_id
     # Column for Saving if a player is logged in or not
     mySQLColumnLogged: isLogged
 GroupOptions:
@@ -276,10 +286,6 @@ ExternalBoardOptions:
     mySQLOtherUsernameColumns: []
     # How much Log to Round needed in BCrypt(do not change it if you do not know what's your doing)
     bCryptLog2Round: 10
-    # phpBB prefix defined during phpbb installation process
-    phpbbTablePrefix: 'phpbb_'
-    # phpBB activated group id , 2 is default registered group defined by phpbb
-    phpbbActivatedGroupId: 2
     # WordPress prefix defined during WordPress installation process
     wordpressTablePrefix: 'wp_'
 permission:
